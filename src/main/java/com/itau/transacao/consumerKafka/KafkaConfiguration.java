@@ -13,6 +13,8 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
+import com.itau.transacao.DTO.EventoDeTransacaoResponse;
+
 //import cn.birdstudio.jms.TransactionMessage;
 
 @Configuration

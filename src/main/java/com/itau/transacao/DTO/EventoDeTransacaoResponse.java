@@ -1,7 +1,9 @@
-package com.itau.transacao.consumerKafka;
+package com.itau.transacao.DTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.itau.transacao.entity.Transacao1;
 
 public class EventoDeTransacaoResponse {
 
@@ -33,6 +35,16 @@ public class EventoDeTransacaoResponse {
 
 	public LocalDateTime getEfetivadaEm() {
 		return efetivadaEm;
+	}
+
+	@Override
+	public String toString() {
+		return "EventoDeTransacaoResponse [id=" + id + ", valor=" + valor + ", cartao=" + cartao.toString() + ", estabelecimento="
+				+ estabelecimento.toString() + ", efetivadaEm=" + efetivadaEm + "]";
+	}
+
+	public Transacao1 toModel() {
+		return new Transacao1(id, valor, cartao, estabelecimento, efetivadaEm);
 	}
 	
 }
