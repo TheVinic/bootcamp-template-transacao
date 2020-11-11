@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import com.itau.transacao.entity.Transacao1;
 
 @RestController
 public class ConsultaComprasController {
+
+	@PersistenceContext
+	private EntityManager manager;
 	
 	@Autowired
 	private TransacaoJpaRepository transacaoJpaRepository;
@@ -23,7 +28,7 @@ public class ConsultaComprasController {
 	@GetMapping("/api/transacoes/{id_cartao}")
 	public ResponseEntity<?> ConsultaCompras(@PathVariable("id_cartao") @NotBlank String id_cartao){
 		
-		List<Transacao1> listaTransacoes = transacaoJpaRepository.findFirst10ByOrderByEfetivadaEm();
+		List<Transacao1> listaTransacoes = transacaoJpaRepository.encontra10UltimasTransacoesPorCartaoId(id_cartao);
 		
 		List<TransacaoResponse> response = StreamSupport.stream(listaTransacoes.spliterator(), false)
 				.map(transacao -> transacao.toResponse()).collect(Collectors.toList());
