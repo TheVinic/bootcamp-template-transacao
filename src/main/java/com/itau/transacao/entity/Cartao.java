@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.itau.transacao.consultaCompras.CartaoResponse;
 import com.itau.transacao.consultaCompras.TransacaoResponse;
 
 @Entity
@@ -64,6 +65,10 @@ public class Cartao {
 		List<TransacaoResponse> listaTransacoes = StreamSupport.stream(transacao.spliterator(), false)
 				.map(transacao -> transacao.toResponse()).collect(Collectors.toList());
 		return listaTransacoes;
+	}
+
+	public CartaoResponse toResponse() {
+		return new CartaoResponse(id, email);
 	}
 
 }

@@ -89,7 +89,7 @@ public class Transacao1 {
 	}
 
 	public TransacaoResponse toResponse() {
-		return new TransacaoResponse(id, idEvento, valor, efetivadaEm, estabelecimento1);
+		return new TransacaoResponse(id, idEvento, valor, efetivadaEm, estabelecimento1, cartao);
 	}
 	
 }
